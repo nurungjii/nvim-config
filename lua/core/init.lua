@@ -33,7 +33,6 @@ opt.termguicolors = true
 opt.timeoutlen = 400
 opt.undofile = true
 
-opt.clipboard = "unnamedplus"
 opt.laststatus = 3
 
 -- Personal autocmds
