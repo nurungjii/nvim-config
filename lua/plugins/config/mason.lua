@@ -21,6 +21,7 @@ mason_lspconfig.setup({
     "jedi_language_server",
     "clangd",
     "lua_ls",
+    "svelte",
   },
 
   automatic_installation = true,

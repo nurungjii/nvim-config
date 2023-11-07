@@ -16,7 +16,7 @@ opt.numberwidth = 2
 opt.expandtab = true
 opt.shiftwidth = 2
 opt.smartindent = true
-opt.tabstop = 2  
+opt.tabstop = 2
 opt.softtabstop = 2
 
 --enable smart case
@@ -33,6 +33,7 @@ opt.termguicolors = true
 opt.timeoutlen = 400
 opt.undofile = true
 
+opt.clipboard = "unnamedplus"
 opt.laststatus = 3
 
 -- Personal autocmds
