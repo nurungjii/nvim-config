@@ -10,7 +10,6 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
-
 local default_plugin = {
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -90,7 +89,7 @@ local default_plugin = {
     },
     config = function()
       require("luasnip.loaders.from_vscode").lazy_load()
-      require('plugins.config.cmp')
+      require("plugins.config.cmp")
     end
   },
 
@@ -150,6 +149,30 @@ local default_plugin = {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function ()
       require("plugins.config.lualine")
+    end
+  },
+
+  {
+    "mfussenegger/nvim-dap",
+    event = "VeryLazy",
+    config = function ()
+      require("plugins.config.nvim-dap")
+    end
+  },
+
+  {
+    "rcarriga/nvim-dap-ui",
+    event = "VeryLazy",
+    config = function ()
+      require("plugins.config.nvim-dap-ui")
+    end
+  },
+
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "VeryLazy",
+    config = function ()
+      require("plugins.config.lsp_signature")
     end
   },
 
