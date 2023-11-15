@@ -80,8 +80,7 @@ lspconfig["quick_lint_js"].setup({
 lspconfig["intelephense"].setup({
   capabilities = capabilities,
   on_attach = on_attach,
-  root_dir = lspconfig.util.root_pattern('setup.txt'),
-})
+  root_dir = lspconfig.util.root_pattern('setup.txt'), })
 
 lspconfig["jedi_language_server"].setup({
   capabilities = capabilities,
