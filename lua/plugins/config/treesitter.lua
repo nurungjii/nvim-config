@@ -1,12 +1,12 @@
-local options = {
-  ensure_installed = { "lua" },
+require("nvim-treesitter.configs").setup({
+  ensure_installed = { "lua","svelte" },
 
-  highlight = {
+  highlight = { enable = true },
+
+  indent = { enable = true, disable = {"python"} },
+
+  context_commentstring = {
     enable = true,
-    use_languagetree = true,
+    enable_autocmd = false
   },
-
-  indent = { enable = true },
-}
-
-return options
+})

@@ -11,61 +11,85 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 local default_plugin = {
-	{
-		"nvim-treesitter/nvim-treesitter",
-		event = "VeryLazy",
-		build = ":TSUpdate",
-		config = function()
-			require("plugins.config.treesitter")
-		end,
-	},
+  {
+    "nvim-treesitter/nvim-treesitter",
+    event = "VeryLazy",
+    build = ":TSUpdate",
+    dependencies = { { "nvim-treesitter/nvim-treesitter-context", config = true }, "RRethy/nvim-treesitter-textsubjects" },
+    config = function()
+      require("plugins.config.treesitter")
+    end,
+  },
 
-	{
-		"nvim-tree/nvim-tree.lua",
-		lazy = false,
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-		},
-		config = function()
-			require('plugins.config.nvim-tree')
-		end,
-	},
+  {
+    "nvim-tree/nvim-tree.lua",
+    lazy = false,
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      require('plugins.config.nvim-tree')
+    end,
+  },
 
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		main = "ibl",
-		config = function()
-			require('plugins.config.indent-blankline')
-		end,
-	},
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    config = function()
+      require('plugins.config.indent-blankline')
+    end,
+  },
 
-	{
-		"lewis6991/gitsigns.nvim",
-		ft = {"gitcommit","diff"},
-		init = function()
+  {
+    "lewis6991/gitsigns.nvim",
+    ft = { "gitcommit", "diff" },
+    init = function()
       -- Only load gitsigns if files in a git repository is open
-			vim.api.nvim_create_autocmd({ "BufRead" }, {
-				group = vim.api.nvim_create_augroup("GitSignsLazyLoad", { clear = true }),
-				callback = function()
-					vim.fn.system("git -C " .. '"' .. vim.fn.expand "%:p:h" .. '"' .. " rev-parse")
-					if vim.v.shell_error == 0 then
-						vim.api.nvim_del_augroup_by_name "GitSignsLazyLoad"
-						vim.schedule(function()
-							require("lazy").load { plugins = { "gitsigns.nvim" } }
-						end)
-					end
-				end,
-			})
-		end,
-		config = function()
-			require('plugins.config.gitsigns')
-		end
-	},
+      vim.api.nvim_create_autocmd({ "BufRead" }, {
+        group = vim.api.nvim_create_augroup("GitSignsLazyLoad", { clear = true }),
+        callback = function()
+          vim.fn.system("git -C " .. '"' .. vim.fn.expand "%:p:h" .. '"' .. " rev-parse")
+          if vim.v.shell_error == 0 then
+            vim.api.nvim_del_augroup_by_name "GitSignsLazyLoad"
+            vim.schedule(function()
+              require("lazy").load { plugins = { "gitsigns.nvim" } }
+            end)
+          end
+        end,
+      })
+    end,
+    config = function()
+      require('plugins.config.gitsigns')
+    end
+  },
+
+  {
+    "tpope/vim-fugitive",
+    ft = { "gitcommit", "diff" },
+    init = function()
+      -- Only load gitsigns if files in a git repository is open
+      vim.api.nvim_create_autocmd({ "BufRead" }, {
+        group = vim.api.nvim_create_augroup("GitFugitiveLazyLoad", { clear = true }),
+        callback = function()
+          vim.fn.system("git -C " .. '"' .. vim.fn.expand "%:p:h" .. '"' .. " rev-parse")
+          if vim.v.shell_error == 0 then
+            vim.api.nvim_del_augroup_by_name "GitFugitiveLazyLoad"
+            vim.schedule(function()
+              require("lazy").load { plugins = { "vim-fugitive" } }
+            end)
+          end
+        end,
+      })
+    end,
+    config = function()
+      require('plugins.config.vim-fugitive')
+    end
+  },
 
   {
     "nvim-telescope/telescope.nvim",
-    tag='0.1.3',
-    dependencies = {'nvim-lua/plenary.nvim', { "nvim-telescope/telescope-fzf-native.nvim", build="make"}, "nvim-tree/nvim-web-devicons"},
+    tag = '0.1.3',
+    dependencies = { 'nvim-lua/plenary.nvim', { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }, "nvim-tree/nvim-web-devicons" },
     config = function()
       require('plugins.config.telescope')
     end
@@ -81,10 +105,10 @@ local default_plugin = {
     "hrsh7th/nvim-cmp",
     event = "VeryLazy",
     dependencies = {
-      "hrsh7th/cmp-buffer", --source for text in buffer
-      "hrsh7th/cmp-path", -- source for file system paths
-      "L3MON4D3/LuaSnip", -- snippet engine
-      "saadparwaiz1/cmp_luasnip", -- for autocompletion
+      "hrsh7th/cmp-buffer",           --source for text in buffer
+      "hrsh7th/cmp-path",             -- source for file system paths
+      "L3MON4D3/LuaSnip",             -- snippet engine
+      "saadparwaiz1/cmp_luasnip",     -- for autocompletion
       "rafamadriz/friendly-snippets", -- useful snippets
     },
     config = function()
@@ -114,16 +138,23 @@ local default_plugin = {
       require("plugins.config.nvim-lspconfig")
     end,
   },
+
+  {
+    "elentok/format-on-save.nvim",
+    config = function()
+      require("plugins.config.format-on-save")
+    end
+  },
   -- end of LSP
 
-  -- autopairs 
+  -- autopairs
   {
     "windwp/nvim-autopairs",
     event = { "InsertEnter" },
     dependencies = {
       "hrsh7th/nvim-cmp",
     },
-    config = function ()
+    config = function()
       require("plugins.config.nvim-autopairs")
     end
   },
@@ -132,22 +163,30 @@ local default_plugin = {
     "numToStr/Comment.nvim",
     event = { "BufReadPre", "BufNewFile" },
     keys = {
-      { "gcc", mode = "n", desc = "Comment toggle current line" },
-      { "gc", mode = { "n", "o" }, desc = "Comment toggle linewise" },
-      { "gc", mode = "x", desc = "Comment toggle linewise (visual)" },
-      { "gbc", mode = "n", desc = "Comment toggle current block" },
-      { "gb", mode = { "n", "o" }, desc = "Comment toggle blockwise" },
-      { "gb", mode = "x", desc = "Comment toggle blockwise (visual)" },
+      { "gcc", mode = "n",          desc = "Comment toggle current line" },
+      { "gc",  mode = { "n", "o" }, desc = "Comment toggle linewise" },
+      { "gc",  mode = "x",          desc = "Comment toggle linewise (visual)" },
+      { "gbc", mode = "n",          desc = "Comment toggle current block" },
+      { "gb",  mode = { "n", "o" }, desc = "Comment toggle blockwise" },
+      { "gb",  mode = "x",          desc = "Comment toggle blockwise (visual)" },
     },
-    config = function ()
+    config = function()
       require("plugins.config.comment")
+    end
+  },
+
+  {
+    "danymat/neogen",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require("plugins.config.neogen")
     end
   },
 
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function ()
+    config = function()
       require("plugins.config.lualine")
     end
   },
@@ -155,7 +194,7 @@ local default_plugin = {
   {
     "mfussenegger/nvim-dap",
     event = "VeryLazy",
-    config = function ()
+    config = function()
       require("plugins.config.nvim-dap")
     end
   },
@@ -163,7 +202,7 @@ local default_plugin = {
   {
     "rcarriga/nvim-dap-ui",
     event = "VeryLazy",
-    config = function ()
+    config = function()
       require("plugins.config.nvim-dap-ui")
     end
   },
@@ -171,21 +210,21 @@ local default_plugin = {
   {
     "ray-x/lsp_signature.nvim",
     event = "VeryLazy",
-    config = function ()
+    config = function()
       require("plugins.config.lsp_signature")
     end
   },
 
   {
     "startup-nvim/startup.nvim",
-    dependencies = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"},
-    config = function ()
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+    config = function()
       require("plugins.config.startup-nvim")
     end
   },
 
   -- colorscheme
-	{
+  {
     "nyoom-engineering/oxocarbon.nvim",
     priority = 1000,
     config = function()
@@ -193,6 +232,7 @@ local default_plugin = {
       vim.cmd([[colorscheme oxocarbon]])
     end,
   },
+
 }
 
 local lazy_opts = {
