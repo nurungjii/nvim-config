@@ -201,6 +201,7 @@ local default_plugin = {
 
   {
     "rcarriga/nvim-dap-ui",
+    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
     event = "VeryLazy",
     config = function()
       require("plugins.config.nvim-dap-ui")

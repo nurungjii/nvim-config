@@ -18,7 +18,7 @@ mason_lspconfig.setup({
     "cssls",
     "quick_lint_js",
     "intelephense",
-    "jedi_language_server",
+    "pyright",
     "clangd",
     "lua_ls",
     "svelte",

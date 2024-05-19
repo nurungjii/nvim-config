@@ -5,8 +5,7 @@ local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
 local on_attach = function(client, bufnr)
   -- if client.resolved_capabilities.completion then
-  --   cmp_nvim_lsp.on_attach(client, bufnr)
-  -- end
+  --   cmp_nvim_lsp.on_attach(client, bufnr) end
   opts.buffer = bufnr
 
   -- set keybinds
@@ -84,10 +83,15 @@ lspconfig["intelephense"].setup({
   root_dir = lspconfig.util.root_pattern('setup.txt'),
 })
 
-lspconfig["jedi_language_server"].setup({
+-- lspconfig["jedi_language_server"].setup({
+--   capabilities = capabilities,
+--   on_attach = on_attach,
+--   root_dir = lspconfig.util.root_pattern('setup.txt'),
+-- })
+--
+lspconfig["pyright"].setup({
   capabilities = capabilities,
   on_attach = on_attach,
-  root_dir = lspconfig.util.root_pattern('setup.txt'),
 })
 
 lspconfig["clangd"].setup({
