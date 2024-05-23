@@ -232,6 +232,8 @@ local default_plugin = {
     end
   },
 
+  { 'wakatime/vim-wakatime', lazy = false },
+
   -- colorscheme
   {
     "nyoom-engineering/oxocarbon.nvim",
