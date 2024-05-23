@@ -1,9 +1,13 @@
 require("nvim-treesitter.configs").setup({
-  ensure_installed = { "lua","svelte" },
+  ensure_installed = { "lua", "svelte" },
 
-  highlight = { enable = true },
+  highlight = {
+    enable = true,
+  },
 
-  indent = { enable = true, disable = {"python"} },
+  -- additional_vim_regex_highlighting = true,
+
+  indent = { enable = true, disable = { "python" } },
 
   context_commentstring = {
     enable = true,

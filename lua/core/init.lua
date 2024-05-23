@@ -70,3 +70,4 @@ nauto('FocusLost', {
   pattern = '*',
   command = 'silent! wa'
 })
+

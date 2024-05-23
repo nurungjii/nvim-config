@@ -83,12 +83,6 @@ lspconfig["intelephense"].setup({
   root_dir = lspconfig.util.root_pattern('setup.txt'),
 })
 
--- lspconfig["jedi_language_server"].setup({
---   capabilities = capabilities,
---   on_attach = on_attach,
---   root_dir = lspconfig.util.root_pattern('setup.txt'),
--- })
---
 lspconfig["pyright"].setup({
   capabilities = capabilities,
   on_attach = on_attach,
@@ -102,6 +96,21 @@ lspconfig["clangd"].setup({
 lspconfig["svelte"].setup({
   capabilities = capabilities,
   on_attach = on_attach,
+})
+
+lspconfig["hls"].setup({
+  filetypes = { 'haskell', 'lhaskell', 'cabal' },
+  capabilities = capabilities,
+  on_attach = on_attach,
+  -- settings = {
+  --   haskell = {
+  --     plugin = {
+  --       hlint = { globalOn = false },
+  --       tactics = { globalOn = false },
+  --       rename = { globalOn = true },
+  --     }
+  --   }
+  -- },
 })
 
 lspconfig["tsserver"].setup({

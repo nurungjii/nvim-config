@@ -13,11 +13,11 @@ vim.opt.rtp:prepend(lazypath)
 local default_plugin = {
   {
     "nvim-treesitter/nvim-treesitter",
-    event = "VeryLazy",
     build = ":TSUpdate",
-    dependencies = { { "nvim-treesitter/nvim-treesitter-context", config = true }, "RRethy/nvim-treesitter-textsubjects" },
+    -- dependencies = { { "nvim-treesitter/nvim-treesitter-context", config = true }, "RRethy/nvim-treesitter-textsubjects" },
     config = function()
       require("plugins.config.treesitter")
+      require('nvim-treesitter.install').compilers = { 'gcc' }
     end,
   },
 
@@ -221,6 +221,14 @@ local default_plugin = {
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
     config = function()
       require("plugins.config.startup-nvim")
+    end
+  },
+
+  {
+    "neovimhaskell/haskell-vim",
+    config = function()
+      --vimscript for vim-haskell
+      vim.cmd("let g:haskell_indent_where = 6")
     end
   },
 
