@@ -78,5 +78,3 @@ vim.keymap.set("n", "<C-n>", require("nvim-tree.api").tree.toggle, {
   silent = true,
   desc = "toggle nvim-tree",
 })
-
-vim.keymap.set("n", "<leader>e", "<cmd> NvimTreeFocus <CR>", {desc="focus nvimtree"})

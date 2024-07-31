@@ -140,10 +140,7 @@ local default_plugin = {
   },
 
   {
-    "elentok/format-on-save.nvim",
-    config = function()
-      require("plugins.config.format-on-save")
-    end
+    "Vimjas/vim-python-pep8-indent",
   },
   -- end of LSP
 
