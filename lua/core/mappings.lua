@@ -18,7 +18,5 @@ keymap.set("n", "<C-c>", "<cmd %y+ <CR>", { desc = "Copy whole file" })
 
 keymap.set("n", "<leader>n", "<cmd> set nu! <CR>", { desc = "Toggle line number" })
 
-keymap.set("n", "<leader>e", ":lua vim.diagnostic.open_float(0, {scope=\"line\"})<CR>", { desc = "Show full error" })
-
 -- t
 keymap.set("t", "<C-x>", vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), { desc = "Escape terminal mode" })
