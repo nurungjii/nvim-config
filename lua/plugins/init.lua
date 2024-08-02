@@ -224,8 +224,10 @@ local default_plugin = {
   {
     "neovimhaskell/haskell-vim",
     config = function()
-      --vimscript for vim-haskell
-      vim.cmd("let g:haskell_indent_where = 6")
+      vim.g.haskell_indent_if = 2
+      vim.g.haskell_indent_before_where = 2
+      vim.g.haskell_indent_case_alternative = 1
+      vim.g.haskell_indent_let_no_in = 0
     end
   },
 
