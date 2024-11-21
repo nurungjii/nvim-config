@@ -18,5 +18,6 @@ keymap.set("n", "<C-c>", "<cmd %y+ <CR>", { desc = "Copy whole file" })
 
 keymap.set("n", "<leader>n", "<cmd> set nu! <CR>", { desc = "Toggle line number" })
 
+keymap.set("n", "<leader>dd", "<cmd>ARsyncDown<cr>", {desc="Sync files from remote", })
 -- t
 keymap.set("t", "<C-x>", vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), { desc = "Escape terminal mode" })

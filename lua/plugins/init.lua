@@ -233,14 +233,28 @@ local default_plugin = {
 
   { 'wakatime/vim-wakatime', lazy = false },
 
-  -- colorscheme
+  {
+    'kenn7/vim-arsync',
+    dependencies = { "prabirshrestha/async.vim" },
+  },
+
+  {
+    'nosduco/remote-sshfs.nvim',
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      require("plugins.config.remote-sshfs")
+    end
+  },
+
+
+  --colorscheme
   {
     "nyoom-engineering/oxocarbon.nvim",
     priority = 1000,
     config = function()
       vim.opt.background = "dark"
       vim.cmd([[colorscheme oxocarbon]])
-    end,
+    end
   },
 
 }
