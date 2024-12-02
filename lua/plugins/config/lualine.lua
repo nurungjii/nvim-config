@@ -2,11 +2,11 @@ local lualine = require("lualine")
 local lazy_status = require("lazy.status")
 
 local colors = {
-  blue = "#75A5F7",
-  green = "#00ACA9",
-  violet = "#BE95FF",
-  yellow = "#CACB41",
-  red = "#EE5396",
+  blue = "#8E9FE5",
+  green = "#85A387",
+  violet = "#659096",
+  yellow = "#DBBC8E",
+  red = "#D9A5C9",
   fg = "#c3ccdc",
   bg = "#000000",
   inactive_bg = "#2c3043",

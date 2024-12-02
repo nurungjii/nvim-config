@@ -36,6 +36,8 @@ opt.undofile = true
 opt.clipboard = "unnamedplus"
 opt.laststatus = 3
 
+opt.scroll = 10
+
 -- Personal autocmds
 
 local nauto = vim.api.nvim_create_autocmd

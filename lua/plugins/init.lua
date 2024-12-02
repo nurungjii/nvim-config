@@ -56,8 +56,7 @@ local default_plugin = {
             end)
           end
         end,
-      })
-    end,
+      }) end,
     config = function()
       require('plugins.config.gitsigns')
     end
@@ -239,22 +238,27 @@ local default_plugin = {
   },
 
   {
-    'nosduco/remote-sshfs.nvim',
-    dependencies = { "nvim-telescope/telescope.nvim" },
+    "karb94/neoscroll.nvim",
     config = function()
-      require("plugins.config.remote-sshfs")
+      require("plugins.config.neoscroll")
     end
   },
 
+  {
+    "sphamba/smear-cursor.nvim",
+    config = function()
+      require("plugins.config.smear-cursor")
+    end
+  },
 
   --colorscheme
   {
-    "nyoom-engineering/oxocarbon.nvim",
+    "cdmill/neomodern.nvim",
+    lazy = false,
     priority = 1000,
     config = function()
-      vim.opt.background = "dark"
-      vim.cmd([[colorscheme oxocarbon]])
-    end
+      require("plugins.config.neomodern")
+    end,
   },
 
 }
