@@ -251,6 +251,14 @@ local default_plugin = {
     end
   },
 
+  {
+    "nosduco/remote-sshfs.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      require("plugins.config.nvim-sshfs")
+    end
+  },
+
   --colorscheme
   {
     "cdmill/neomodern.nvim",

@@ -1,21 +1,25 @@
 local dap = require("dap")
 
-dap.adapters.gdb = {
+dap.adapters.lldb = {
   type = "executable",
-  command = "gdb",
-  args = {"-i", "dap"}
+  command = "/usr/bin/lldb",
+  name = "lldb"
 }
 
-dap.configurations.c = {
-  {
-    name = "Launch",
-    type = "gdb",
+local lldb = {
+    name = "Launch lldb",
+    type = "lldb",
     request = "launch",
     program = function()
       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
     end,
     cwd = "${workspaceFolder}",
-  },
+    stopOnEntry = false,
+    args = {},
+}
+
+dap.configurations.c = {
+  lldb
 }
 
 vim.keymap.set("n", '<leader>dc', function() require('dap').continue() end)
