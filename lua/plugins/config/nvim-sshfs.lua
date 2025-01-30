@@ -9,9 +9,9 @@ require('remote-sshfs').setup{
     -- ssh_configs = vim.split(vim.fn.globpath(vim.fn.expand "$HOME" .. "/.ssh/configs", "*"), "\n")
     sshfs_args = { -- arguments to pass to the sshfs command
       "-o reconnect",
+      "-o allow_other",
+      "-o default_permissions",
       "-o kill_on_unmount",
-      "-o direct_io",
-      "-o ConnectTimeout=5",
     },
   },
   mounts = {

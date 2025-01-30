@@ -1,23 +1,23 @@
-local status_ok, nvim_tree   = pcall(require, "nvim-tree")
-
-if not status_ok then
-    return
-end
+-- local status_ok, nvim_tree   = pcall(require, "nvim-tree")
+--
+-- if not status_ok then
+--     return
+-- end
 
 -- check if there are any active sshfs mounts
-local function has_sshfs_mounts()
-    local command = "mount | grep -q '.sshfs'"
-    local handle = io.popen(command)
-    local result = handle:read("*a")
-    handle:close()
-    return os.execute(command) == 0
-end
+-- local function has_sshfs_mounts()
+--     local command = "mount | grep -q '.sshfs'"
+--     local handle = io.popen(command)
+--     local result = handle:read("*a")
+--     handle:close()
+--     return os.execute(command) == 0
+-- end
 
-if has_sshfs_mounts() then
-    -- Add binding to open :Explore with <leader>e only if sshfs is mounted
-    vim.api.nvim_set_keymap('n', '<C-n>', ':Explore<CR>', { noremap = true, silent = true })
-    return
-end
+-- if has_sshfs_mounts() then
+--     Add binding to open :Explore with <leader>e only if sshfs is mounted
+--     vim.api.nvim_set_keymap('n', '<C-n>', ':Explore<CR>', { noremap = true, silent = true })
+--     return
+-- end
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1

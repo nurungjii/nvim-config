@@ -233,11 +233,6 @@ local default_plugin = {
   { 'wakatime/vim-wakatime', lazy = false },
 
   {
-    'kenn7/vim-arsync',
-    dependencies = { "prabirshrestha/async.vim" },
-  },
-
-  {
     "karb94/neoscroll.nvim",
     config = function()
       require("plugins.config.neoscroll")
@@ -248,14 +243,6 @@ local default_plugin = {
     "sphamba/smear-cursor.nvim",
     config = function()
       require("plugins.config.smear-cursor")
-    end
-  },
-
-  {
-    "nosduco/remote-sshfs.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim" },
-    config = function()
-      require("plugins.config.nvim-sshfs")
     end
   },
 
