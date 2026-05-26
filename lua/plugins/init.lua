@@ -230,8 +230,6 @@ local default_plugin = {
     end
   },
 
-  { 'wakatime/vim-wakatime', lazy = false },
-
   {
     "karb94/neoscroll.nvim",
     config = function()

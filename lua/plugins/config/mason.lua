@@ -22,7 +22,7 @@ mason_lspconfig.setup({
     "clangd",
     "lua_ls",
     "svelte",
-    "tsserver",
+    "ts_ls",
   },
 
   automatic_installation = true,

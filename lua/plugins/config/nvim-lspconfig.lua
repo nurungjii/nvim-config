@@ -1,4 +1,4 @@
-local lspconfig = require("lspconfig")
+local lspconfig = vim.lsp.config
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
 local keymap = vim.keymap
@@ -37,10 +37,12 @@ local on_attach = function(client, bufnr)
   keymap.set("n", "<leader>e", ":lua vim.diagnostic.open_float(0, {scope=\"line\"})<CR>", opts)
 
   opts.desc = "Go to previous diagnostic"
-  keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+  keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1, float=true }) end, opts)
 
   opts.desc = "Go to next diagnostic"
-  keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+  keymap.set("n", "]d", function()
+    vim.diagnostic.jump({ count=1, float=true })
+  end, opts)
 
   opts.desc = "Show documentation for what is under cursor"
   keymap.set("n", "K", vim.lsp.buf.hover, opts)
@@ -62,55 +64,55 @@ for type, icon in pairs(signs) do
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
-lspconfig["html"].setup({
+lspconfig("html", {
   capabilities = capabilities,
   on_attach = on_attach,
-  root_dir = lspconfig.util.root_pattern('setup.txt'),
+  root_markers = { 'setup.txt' },
 })
 
-lspconfig["cssls"].setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
-})
-
-lspconfig["quick_lint_js"].setup({
+lspconfig("cssls", {
   capabilities = capabilities,
   on_attach = on_attach,
 })
 
-lspconfig["intelephense"].setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
-  root_dir = lspconfig.util.root_pattern('setup.txt'),
-})
-
-lspconfig["pyright"].setup({
+lspconfig("quick_lint_js", {
   capabilities = capabilities,
   on_attach = on_attach,
 })
 
-lspconfig["clangd"].setup({
+lspconfig("intelephense", {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  root_markers = { 'setup.txt' },
+})
+
+lspconfig("pyright", {
   capabilities = capabilities,
   on_attach = on_attach,
 })
 
-lspconfig["svelte"].setup({
+lspconfig("clangd", {
   capabilities = capabilities,
   on_attach = on_attach,
 })
 
-lspconfig["hls"].setup({
+lspconfig("svelte", {
+  capabilities = capabilities,
+  on_attach = on_attach,
+})
+
+lspconfig("hls", {
   filetypes = { 'haskell', 'lhaskell', 'cabal' },
   capabilities = capabilities,
   on_attach = on_attach,
 })
 
-lspconfig["tsserver"].setup({
+lspconfig('ts_ls', {
   capabilities = capabilities,
   on_attach = on_attach,
 })
 
-lspconfig["lua_ls"].setup({
+lspconfig('lua_ls', {
   capabilities = capabilities,
   on_attach = on_attach,
   -- custom settings for lua specifically with nvim

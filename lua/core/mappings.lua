@@ -5,6 +5,7 @@ keymap.set("i", "<C-h>", "<Left>", { silent = true, desc = "Move left while edit
 keymap.set("i", "<C-l>", "<Right>", { silent = true, desc = "Move right while editing" })
 keymap.set("i", "<C-k>", "<Up>", { silent = true, desc = "Move up while editing" })
 keymap.set("i", "<C-j>", "<Down>", { silent = true, desc = "Move down while editing" })
+keymap.set('i', '<C-v>', '<C-r>+', { noremap = true, silent = true })
 
 -- n
 keymap.set("n", "<C-h>", "<C-w>h", { silent = true, desc = "Window left" })

@@ -1,5 +1,5 @@
-require("nvim-treesitter.configs").setup({
-  ensure_installed = { "lua", "svelte" },
+require("nvim-treesitter").setup({
+  ensure_installed = { "lua" },
 
   highlight = {
     enable = true,
