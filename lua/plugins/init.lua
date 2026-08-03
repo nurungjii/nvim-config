@@ -13,6 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 local default_plugin = {
   {
     "nvim-treesitter/nvim-treesitter",
+    lazy = false,
     build = ":TSUpdate",
     -- dependencies = { { "nvim-treesitter/nvim-treesitter-context", config = true }, "RRethy/nvim-treesitter-textsubjects" },
     config = function()
@@ -246,12 +247,12 @@ local default_plugin = {
 
   --colorscheme
   {
-    "cdmill/neomodern.nvim",
+    "slugbyte/lackluster.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      require("plugins.config.neomodern")
-    end,
+      require("plugins.config.lackluster")
+    end
   },
 
 }
