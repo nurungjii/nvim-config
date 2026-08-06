@@ -8,3 +8,6 @@ Mason and Nvim-LSP:
 
 Telescope:
 - requires ripgrep and fd, install both as actual files, not vim plugins
+
+Treesitter:
+- install tree-sitter-cli tool
