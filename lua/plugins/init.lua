@@ -179,14 +179,6 @@ local default_plugin = {
   },
 
   {
-    "danymat/neogen",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    config = function()
-      require("plugins.config.neogen")
-    end
-  },
-
-  {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
