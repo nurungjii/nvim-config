@@ -99,6 +99,18 @@ local servers = {
     filetypes = { "haskell", "lhaskell", "cabal" },
   },
   ts_ls = {},
+  rust_analyzer = {
+    ["rust-analyzer"] = {
+      cargo = {
+        buildScripts = {
+          enable = true,
+        },
+      },
+      procMacro = {
+        enable = true,
+      },
+    },
+  },
   lua_ls = {
     settings = {
       Lua = {
